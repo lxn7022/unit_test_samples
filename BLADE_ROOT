@@ -1,0 +1,36 @@
+cc_config(
+    extra_incs = [
+        './third_party/gtest/include',
+    ],
+    linkflags = [
+        '-L./third_party/gtest/lib/',
+    ],
+    warnings = [
+        '-Wall',
+        '-Wno-vla',
+        '-Wno-overloaded-virtual',
+    ],
+    cxxflags = [
+        '-std=c++11',
+        '-g3',
+        '-fPIC',
+        '-D_GNU_SOURCE',
+        '-DGFLAGS_NS=google',
+    ],
+    optimize = '-O3'
+)
+
+cc_binary_config(
+    extra_libs = [
+        '#pthread',
+    ]
+)
+
+cc_test_config(
+    gtest_libs = [
+        '//third_party/gtest:gtest_main',
+    ],
+    gtest_main_libs = [
+        '//third_party/gtest:gtest_main',
+    ]
+)
